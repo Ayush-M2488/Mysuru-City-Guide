@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Mysuru - Our Heritage Your Destination</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="logo-animation">
+                <h1 class="splash-logo">Discover the Royal Heritage of Mysuru</h1>
+                <p class="splash-tagline">Our Heritage Your Destination</p>
+                <div class="elephant-mascot">🐘</div>
+            </div>
+        </div>
+        <button class="skip-button" onclick="skipSplash()">Skip →</button>
+        <div class="palace-background"></div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="main-nav" class="main-nav hidden">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">🐘 Explore Mysuru</span>
+            </div>
+            <button class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active" onclick="navigateTo('home')">Home</a></li>
+                <li><a href="#attractions" class="nav-link" onclick="navigateTo('attractions')">Attractions</a></li>
+                <li><a href="#favorites" class="nav-link" onclick="navigateTo('favorites')">
+                    Favorites <span class="favorites-count" id="favorites-count">0</span>
+                </a></li>
+                <li><a href="#reviews" class="nav-link" onclick="navigateTo('reviews')">Reviews</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="hidden">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-image">
+                <img src="mahendra-maddirala-x3y2phkf7fI-unsplash.jpg" alt="Mysuru Palace Illuminated">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">Discover the Royal Heritage of Mysuru</h1>
+                <p class="hero-subtitle">Explore palaces, temples, gardens &amp; authentic cuisine</p>
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search attractions..." oninput="handleSearch()" onfocus="handleSearchFocus()" autocomplete="off">
+                        <button class="search-button" >🔍</button>
+                    </div>
+                    <div id="autocomplete-dropdown" class="autocomplete-dropdown hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Explorer Section -->
+        <section id="attractions" class="category-section">
+            <div class="container">
+                <h2 class="section-title">Explore by Category</h2>
+                
+                <!-- Category Tabs -->
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="all" onclick="filterByCategory('all')">
+                        <span class="tab-icon">🌟</span>
+                        <span>All</span>
+                    </button>
+                    <button class="category-tab" data-category="Food" onclick="filterByCategory('Food')">
+                        <span class="tab-icon">🍽️</span>
+                        <span>Food</span>
+                    </button>
+                    <button class="category-tab" data-category="Culture" onclick="filterByCategory('Culture')">
+                        <span class="tab-icon">🎭</span>
+                        <span>Culture</span>
+                    </button>
+                    <button class="category-tab" data-category="Nature" onclick="filterByCategory('Nature')">
+                        <span class="tab-icon">🌳</span>
+                        <span>Nature</span>
+                    </button>
+                    <button class="category-tab" data-category="Shopping" onclick="filterByCategory('Shopping')">
+                        <span class="tab-icon">🛍️</span>
+                        <span>Shopping</span>
+                    </button>
+                    <button class="category-tab" data-category="Historical" onclick="filterByCategory('Historical')">
+                        <span class="tab-icon">🏛️</span>
+                        <span>Historical</span>
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <select id="rating-filter" class="filter-select" onchange="applyFilters()">
+                        <option value="all">All Ratings</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4+ Stars</option>
+                        <option value="3">3+ Stars</option>
+                    </select>
+                    <button class="clear-filters" onclick="clearFilters()">Clear Filters</button>
+                </div>
+
+                <!-- Attractions Grid -->
+                <div id="attractions-grid" class="attractions-grid"></div>
+                
+                <div id="no-results" class="no-results hidden">
+                    <p>No attractions found. Try adjusting your filters.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Favorites Section -->
+        <section id="favorites" class="favorites-section hidden">
+            <div class="container">
+                <h2 class="section-title">My Favorites</h2>
+                <div id="favorites-grid" class="attractions-grid"></div>
+                <div id="empty-favorites" class="empty-state hidden">
+                    <div class="empty-icon">💔</div>
+                    <h3>No favorites yet</h3>
+                    <p>Start exploring and add attractions to your favorites!</p>
+                    <button class="btn btn-primary" onclick="navigateTo('attractions')">Explore Attractions</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="reviews-section hidden">
+            <div class="container">
+                <h2 class="section-title">Ratings &amp; Reviews</h2>
+                
+                <div class="reviews-container">
+                    <!-- Review Form -->
+                    <div class="review-form-card">
+                        <h3>Submit Your Review</h3>
+                        <form id="review-form" onsubmit="submitReview(event)">
+                            <div class="form-group">
+                                <label for="reviewer-name">Your Name</label>
+                                <input type="text" id="reviewer-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="attraction-select">Select Attraction</label>
+                                <select id="attraction-select" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Your Rating</label>
+                                <div class="star-rating" id="star-rating">
+                                    <span class="star" data-rating="1" onclick="setRating(1)">★</span>
+                                    <span class="star" data-rating="2" onclick="setRating(2)">★</span>
+                                    <span class="star" data-rating="3" onclick="setRating(3)">★</span>
+                                    <span class="star" data-rating="4" onclick="setRating(4)">★</span>
+                                    <span class="star" data-rating="5" onclick="setRating(5)">★</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="review-comment">Your Review</label>
+                                <textarea id="review-comment" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                        </form>
+                    </div>
+
+                    <!-- Reviews Display -->
+                    <div class="reviews-display">
+                        <h3>Recent Reviews</h3>
+                        <div id="reviews-list"></div>
+                        <div id="no-reviews" class="empty-state">
+                            <p>No reviews yet. Be the first to share your experience!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h2 class="section-title">Explore on Map</h2>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62422.39195085054!2d76.6119!3d12.2958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf70381d572ef9%3A0x2b89ece8c0f8396d!2sMysuru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        title="Mysuru City Map">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <h3>🐘 Explore Mysuru</h3>
+                        <p>Our Heritage Your Destination</p>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home" onclick="navigateTo('home')">Home</a></li>
+                            <li><a href="#attractions" onclick="navigateTo('attractions')">Attractions</a></li>
+                            <li><a href="#favorites" onclick="navigateTo('favorites')">Favorites</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-info">
+                        <h4>Contact</h4>
+                        <p>Visit Mysuru Tourism Office</p>
+                        <p>Email: info@exploreMysuru.com</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Explore Mysuru. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="modal hidden">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
