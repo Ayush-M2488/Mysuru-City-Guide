@@ -1,4 +1,4 @@
-Explore Mysore
+Explore Mysore   Deployed Link:https://mysore-city-guide.netlify.app/
 
 Explore Mysore is an interactive, responsive web-based tourism dashboard designed to help visitors and locals discover the rich heritage, attractions, restaurants, and cultural landmarks of Mysore (Mysuru), Karnataka. Built with modern web technologies, this platform showcases 18+ curated attractions across 5 categories with dynamic filtering, detailed information, interactive maps, and user reviews.
 
