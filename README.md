@@ -1,8 +1,8 @@
-Explore Mysore   Deployed Link:https://mysore-city-guide.netlify.app/
+Explore Mysore ----------------------------  Deployed Link:https://mysore-city-guide.netlify.app/
 
 Explore Mysore is an interactive, responsive web-based tourism dashboard designed to help visitors and locals discover the rich heritage, attractions, restaurants, and cultural landmarks of Mysore (Mysuru), Karnataka. Built with modern web technologies, this platform showcases 18+ curated attractions across 5 categories with dynamic filtering, detailed information, interactive maps, and user reviews.
 
-Key Features
+Key Features------
 
 
 
@@ -26,6 +26,7 @@ Responsive design for all devices (desktop, tablet, mobile)
 
 Real-time autocomplete search with instant navigation
 
+-----------------------------------------------------------------------------------
 
 🏛️ Rich Content
 
@@ -37,6 +38,7 @@ High-quality images and detailed descriptions
 
 Accurate location data with embedded Google Maps
 
+----------------------------------------------------------------------------------
 
 
 🎯 Smart Features
@@ -53,7 +55,7 @@ Ratings and star-based reviews system
 
 Favorites/wishlist functionality with localStorage
 
-
+---------------------------------------------------------------------------------
 
 🎨 Design Excellence
 
@@ -69,11 +71,11 @@ Accessibility-first design approach
 
 
 
+----------------------------------------------------------------------------------
 
+Technologies Used-----------------------
 
-Technologies Used
-
-Frontend Stack
+Frontend Stack:
 
 HTML5: Semantic markup and structure
 
@@ -85,13 +87,13 @@ Google Maps Embed API: Interactive location mapping
 
 
 
+----------------------------------------------------------------------------------
 
 
 
+Usage Guide:
 
-Usage Guide
-
-Browsing Attractions
+Browsing Attractions--------------
 
 Home Page: Scroll through featured attractions or use category tabs
 
@@ -103,7 +105,7 @@ Map View: Check the embedded map in detail modal to see exact location
 
 
 
-Searching
+Searching-------------------------
 
 
 Click Search Bar: Located in the navigation header
@@ -116,7 +118,7 @@ Auto-Navigate: App smoothly scrolls to and opens the attraction details
 
 
 
-Adding Reviews
+Adding Reviews--------------------
 
 
 Open Attraction Details: Click "View Details" on any attraction
@@ -131,7 +133,7 @@ View Reviews: All reviews appear below the form
 
 
 
-Managing Favorites
+Managing Favorites----------------
 
 
 Add to Favorites: Click heart icon in detail modal
@@ -141,4 +143,4 @@ View Favorites: Navigate to favorites section
 Remove from Favorites: Click heart icon again to remove
 
 Persistent Storage: Favorites are saved even after closing browser
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
